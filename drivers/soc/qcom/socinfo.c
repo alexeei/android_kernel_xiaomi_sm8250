@@ -54,6 +54,7 @@ enum {
 	HW_PLATFORM_RCM	= 21,
 	HW_PLATFORM_STP = 23,
 	HW_PLATFORM_SBC = 24,
+	HW_PLATFORM_J1S = 41,
 	HW_PLATFORM_HDK = 31,
 	HW_PLATFORM_J9A = 35,
 	HW_PLATFORM_G7A = 36,
@@ -78,6 +79,10 @@ const char *hw_platform[] = {
 	[HW_PLATFORM_DTV] = "DTV",
 	[HW_PLATFORM_STP] = "STP",
 	[HW_PLATFORM_SBC] = "SBC",
+	[HW_PLATFORM_J2] = "UMI",
+	[HW_PLATFORM_J1] = "CMI",
+	[HW_PLATFORM_J11] = "LMI",
+	[HW_PLATFORM_J1S] = "CAS",
 	[HW_PLATFORM_HDK] = "HDK",
 	[HW_PLATFORM_J9A] = "VANGOGH",
 	[HW_PLATFORM_G7A] = "PICASSO",
@@ -325,7 +330,7 @@ static struct msm_soc_info cpu_of_id[] = {
 	[365] = {MSM_CPU_SDMMAGPIE, "SDMMAGPIE"},
 
 	/* kona ID */
-	[356] = {MSM_CPU_KONA, "KONA"},
+	[356] = {MSM_CPU_KONA, "SM8250"},
 	[455] = {MSM_CPU_KONA, "KONA"},
 
 	/* Lito ID */
@@ -1662,6 +1667,16 @@ uint32_t get_hw_version_platform(void)
 		return HARDWARE_PLATFORM_PICASSO;
 	else if (hw_type == HW_PLATFORM_J9)
 		return HARDWARE_PLATFORM_MONET;
+	else if (hw_type == HW_PLATFORM_J2)
+		return HARDWARE_PLATFORM_UMI;
+	else if (hw_type == HW_PLATFORM_J1)
+		return HARDWARE_PLATFORM_CMI;
+	else if (hw_type == HW_PLATFORM_J11)
+		return HARDWARE_PLATFORM_LMI;
+	else if (hw_type == HW_PLATFORM_J1T)
+		return HARDWARE_PLATFORM_VERTHANDI;
+	else if (hw_type == HW_PLATFORM_J1S)
+		return HARDWARE_PLATFORM_CAS;
 	else
 		return HARDWARE_PLATFORM_UNKNOWN;
 }

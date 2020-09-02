@@ -192,6 +192,11 @@ enum pmic_model {
 #define HARDWARE_PLATFORM_VANGOGH  2
 #define HARDWARE_PLATFORM_PICASSO  3
 #define HARDWARE_PLATFORM_MONET    4
+#define HARDWARE_PLATFORM_CMI  1
+#define HARDWARE_PLATFORM_UMI  2
+#define HARDWARE_PLATFORM_LMI  3
+#define HARDWARE_PLATFORM_VERTHANDI  5
+#define HARDWARE_PLATFORM_CAS  7
 
 #define HW_MAJOR_VERSION_SHIFT 16
 #define HW_MAJOR_VERSION_MASK  0xFFFF0000
@@ -214,6 +219,7 @@ uint32_t get_hw_country_version(void);
 uint32_t get_hw_version_major(void);
 uint32_t get_hw_version_minor(void);
 uint32_t get_hw_version_build(void);
+const char *product_name_get(void);
 
 enum msm_cpu socinfo_get_msm_cpu(void);
 uint32_t socinfo_get_id(void);
