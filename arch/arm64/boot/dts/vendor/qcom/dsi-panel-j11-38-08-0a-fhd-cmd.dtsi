@@ -245,11 +245,6 @@
 			mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
 
 			mi,mdss-dsi-hbm-fod-on-command = [
-				39 00 00 00 00 00 03 F0 5A 5A
-				/* elvss dimming off */
-				15 00 00 00 00 00 02 B0 07
-				15 00 00 00 00 00 02 B7 51
-				15 01 00 00 00 00 03 F0 A5 A5
 				/* HBM on */
 				39 01 00 00 01 00 02 53 E0
 				/* HBM ON 800nit */
@@ -454,11 +449,6 @@
 			mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
 
 			mi,mdss-dsi-hbm-fod-on-command = [
-				39 00 00 00 00 00 03 F0 5A 5A
-				/* elvss dimming off */
-				15 00 00 00 00 00 02 B0 07
-				15 00 00 00 00 00 02 B7 51
-				15 01 00 00 00 00 03 F0 A5 A5
 				/* HBM on */
 				39 01 00 00 01 00 02 53 E0
 				/* HBM ON 800nit */
