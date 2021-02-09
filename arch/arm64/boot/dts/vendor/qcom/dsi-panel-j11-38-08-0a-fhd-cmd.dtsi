@@ -246,9 +246,9 @@
 
 			mi,mdss-dsi-hbm-fod-on-command = [
 				/* HBM on */
-				39 01 00 00 01 00 02 53 E0
+				15 01 00 00 01 00 02 53 E0
 				/* HBM ON 800nit */
-				39 01 00 00 01 00 03 51 03 FF];
+				15 01 00 00 01 00 03 51 03 FF];
 			mi,mdss-dsi-hbm-fod-on-command-state = "dsi_hs_mode";
 			mi,mdss-dsi-hbm-fod-off-command = [
 				15 01 00 00 00 00 02 53 20
@@ -269,7 +269,7 @@
 			mi,mdss-dsi-hbm-on-command = [
 				15 01 00 00 00 00 02 53 E8
 				/* HBM ON 700nit */
-				39 01 00 00 00 00 03 51 03 FF];
+				15 01 00 00 00 00 03 51 03 FF];
 			mi,mdss-dsi-hbm-on-command-state = "dsi_lp_mode";
 
 			mi,mdss-dsi-flat-on-command = [
@@ -450,9 +450,9 @@
 
 			mi,mdss-dsi-hbm-fod-on-command = [
 				/* HBM on */
-				39 01 00 00 01 00 02 53 E0
+				15 01 00 00 01 00 02 53 E0
 				/* HBM ON 800nit */
-				39 01 00 00 01 00 03 51 03 FF];
+				15 01 00 00 01 00 03 51 03 FF];
 			mi,mdss-dsi-hbm-fod-on-command-state = "dsi_hs_mode";
 			mi,mdss-dsi-hbm-fod-off-command = [
 				15 01 00 00 00 00 02 53 20
@@ -473,7 +473,7 @@
 			mi,mdss-dsi-hbm-on-command = [
 				15 01 00 00 00 00 02 53 E8
 				/* HBM ON 700nit */
-				39 01 00 00 00 00 03 51 03 FF];
+				15 01 00 00 00 00 03 51 03 FF];
 			mi,mdss-dsi-hbm-on-command-state = "dsi_lp_mode";
 
 			mi,mdss-dsi-flat-on-command = [
