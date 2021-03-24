@@ -702,9 +702,7 @@ static int fts_read_and_report_foddata(struct fts_ts_data *data)
 	x = (buf[5] << 8) | buf[6];
 	y = (buf[7] << 8) | buf[8];
 	z = buf[4];
-	XIAOMI_TP_DEBUG("FTS:read fod data: 0x%x    0x%x    0x%x    overlap_area=0x%x\
-			0x%x    0x%x    0x%x    0x%x    0x%x    anxis_x: %d anxis_y: %d\n",
-			buf[1], buf[2], buf[3], buf[4], buf[5], buf[6], buf[7], buf[8], buf[9], x, y);
+
 	if (ret < 0) {
 		FTS_ERROR("read fod failed, ret:%d", ret);
 		return ret;
@@ -1228,7 +1226,6 @@ static int fts_palm_enable(struct fts_ts_data *fts_data, int on)
 
 	enable = on > 0 ? 1 : 0;
 
-	XIAOMI_TP_DEBUG("-----%s-----on=%d\n", __func__, on);
 	if (on)
 		retval = fts_i2c_write_reg(fts_data->client, 0x9A, palm_on);
 	else
@@ -1249,7 +1246,6 @@ static int fts_palm_sensor_write(int value)
 	if (!fts_data)
 		return -EINVAL;
 	fts_data->palm_sensor_switch = value;
-	XIAOMI_TP_DEBUG("-----%s-----value=%d\n", __func__, value);
 	if (fts_data->dev_pm_suspend) {
 		FTS_ERROR("%s tp has dev_pm_suspend\n", __func__);
 		fts_data->palm_sensor_changed = false;
@@ -1767,8 +1763,6 @@ ssize_t fts_tp_debug_write(struct file *file, const char __user *buf, size_t cou
 		printk(KERN_INFO "%s: write proc input error.\n", __func__);
 		return -EFAULT;
 	}
-	sscanf(tmp, "%d", &XIAOMI_TP_DEBUG_EN);
-	pr_err("XIAOMI_TP_DEBUG_EN = %d\n", XIAOMI_TP_DEBUG_EN);
 	return count;
 }
 
