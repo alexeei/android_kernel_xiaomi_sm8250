@@ -112,7 +112,7 @@
 #define FTS_REG_EDGE_FILTER_LEVEL			0x8D
 #define FTS_REG_INT_ACK						0x3E
 
-//#define BTN_INFO							0x155
+#define BTN_INFO							0x155
 #define FTS_SYSFS_ECHO_ON(buf)				(buf[0] == '1')
 #define FTS_SYSFS_ECHO_OFF(buf)				(buf[0] == '0')
 
