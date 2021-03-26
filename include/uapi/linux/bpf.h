@@ -2193,6 +2193,7 @@ union bpf_attr {
 	FN(probe_read_str),		\
 	FN(get_socket_cookie),		\
 	FN(get_socket_uid),		\
+	FN(get_comm_hash_from_sk),	\
 	FN(set_hash),			\
 	FN(setsockopt),			\
 	FN(skb_adjust_room),		\
