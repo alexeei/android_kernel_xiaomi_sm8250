@@ -108,6 +108,7 @@ static inline int qpnp_pon_modem_pwr_off(enum pon_power_off_type type)
 	return -ENODEV;
 }
 
+
 static inline int qpnp_pon_is_lpk(void)
 {
 	return -ENODEV;
