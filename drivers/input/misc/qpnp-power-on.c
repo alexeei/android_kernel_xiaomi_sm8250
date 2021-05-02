@@ -1175,7 +1175,7 @@ static int longpress_kthread(void *_pon)
 
 static void collect_d_work_func(struct work_struct *work)
 {
-	int rc;
+/*	int rc;
 	int tmp_console = console_loglevel;
 	uint pon_rt_sts = 0;
 	struct qpnp_pon *pon =
@@ -1185,7 +1185,7 @@ static void collect_d_work_func(struct work_struct *work)
 
 	volp_scan = !pmic_gpio_get_external("c440000.qcom,spmi:qcom,pm8150@0:pinctrl@c000", 2);
 
-	/* Scan volp to decide whether to enable k_r S2 reset */
+	/* Scan volp to decide whether to enable k_r S2 reset
 	cfg = qpnp_get_cfg(pon, PON_KPDPWR_RESIN);
 	if (cfg != NULL) {
 		if(volp_scan == 1) {
@@ -1202,7 +1202,7 @@ static void collect_d_work_func(struct work_struct *work)
 		}
 	}
 
-	/* check the RT status to get the current status of the line */
+	/* check the RT status to get the current status of the line 
 	rc = regmap_read(pon->regmap, QPNP_PON_RT_STS(pon), &pon_rt_sts);
 	if (rc) {
 		dev_err(pon->dev, "Unable to read PON RT status\n");
@@ -1218,7 +1218,7 @@ static void collect_d_work_func(struct work_struct *work)
 		console_loglevel = tmp_console;
 	}
 err_return:
-	pon->collect_d_in_progress = false;
+	pon->collect_d_in_progress = false;*/
 	return;
 }
 

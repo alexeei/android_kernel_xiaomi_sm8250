@@ -5630,15 +5630,11 @@ struct usbpd *usbpd_create(struct device *parent)
 	}
 	INIT_WORK(&pd->sm_work, usbpd_sm);
 	INIT_WORK(&pd->start_periph_work, start_usb_peripheral_work);
-<<<<<<< HEAD
-=======
-	INIT_WORK(&pd->restart_host_work, restart_usb_host_work);
 	INIT_WORK(&pd->pdo_work, usbpd_pdo_workfunc);
 	INIT_DELAYED_WORK(&pd->src_check_work, source_check_workfunc);
 	INIT_DELAYED_WORK(&pd->fixed_pdo_work, usbpd_fixed_pdo_workfunc);
 	INIT_DELAYED_WORK(&pd->pps_monitor_work, usbpd_pps_monitor_workfunc);
 	INIT_WORK(&pd->disable_active_work, usbpd_disable_active_work);
->>>>>>> 7ae597c2ee83... drivers: usb: Import cleaned-up changes
 	hrtimer_init(&pd->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
 	pd->timer.function = pd_timeout;
 	mutex_init(&pd->swap_lock);

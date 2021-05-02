@@ -328,7 +328,6 @@ int notrace persistent_ram_write(struct persistent_ram_zone *prz,
 	buffer_size_add(prz, c);
 
 	start = buffer_start_add(prz, c);
-	pmsg_start = start;
 
 	rem = prz->buffer_size - start;
 	if (unlikely(rem < c)) {
@@ -360,7 +359,6 @@ int notrace persistent_ram_write_user(struct persistent_ram_zone *prz,
 	buffer_size_add(prz, c);
 
 	start = buffer_start_add(prz, c);
-	pmsg_start = start;
 
 	rem = prz->buffer_size - start;
 	if (unlikely(rem < c)) {
