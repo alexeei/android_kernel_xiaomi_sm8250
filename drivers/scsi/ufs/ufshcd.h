@@ -77,6 +77,10 @@
 #include "ufs.h"
 #include "ufshci.h"
 
+#if defined(CONFIG_UFSFEATURE)
+#include "ufsfeature.h"
+#endif
+
 #define UFSHCD "ufshcd"
 #define UFSHCD_DRIVER_VERSION "0.3"
 
@@ -255,6 +259,10 @@ struct ufshcd_lrb {
 #endif /* CONFIG_SCSI_UFS_CRYPTO */
 
 	bool req_abort_skip;
+
+#if defined(CONFIG_UFSFEATURE) && defined(CONFIG_UFSHPB)
+	int hpb_ctx_id;
+#endif
 };
 
 /**
@@ -413,6 +421,15 @@ struct ufs_hba_variant_ops {
 };
 
 /**
+ * struct ufs_hba_pm_qos_variant_ops - variant specific PM QoS callbacks
+ */
+struct ufs_hba_pm_qos_variant_ops {
+	void		(*req_start)(struct ufs_hba *hba, struct request *req);
+	void		(*req_end)(struct ufs_hba *hba, struct request *req,
+				   bool should_lock);
+};
+
+/**
  * struct ufs_hba_variant - variant specific parameters
  * @name: variant name
  */
@@ -420,6 +437,7 @@ struct ufs_hba_variant {
 	struct device				*dev;
 	const char				*name;
 	struct ufs_hba_variant_ops		*vops;
+	struct ufs_hba_pm_qos_variant_ops	*pm_qos_vops;
 };
 
 struct keyslot_mgmt_ll_ops;
@@ -1141,6 +1159,10 @@ struct ufs_hba {
 	ANDROID_KABI_RESERVE(2);
 	ANDROID_KABI_RESERVE(3);
 	ANDROID_KABI_RESERVE(4);
+
+#if defined(CONFIG_UFSFEATURE)
+       struct ufsf_feature ufsf;
+#endif
 };
 
 static inline void ufshcd_mark_shutdown_ongoing(struct ufs_hba *hba)
@@ -1423,6 +1445,15 @@ u32 ufshcd_get_local_unipro_ver(struct ufs_hba *hba);
 
 void ufshcd_scsi_block_requests(struct ufs_hba *hba);
 void ufshcd_scsi_unblock_requests(struct ufs_hba *hba);
+#if defined(CONFIG_UFSFEATURE)
+int ufshcd_exec_dev_cmd(struct ufs_hba *hba,
+			enum dev_cmd_type cmd_type, int timeout);
+int ufshcd_hibern8_hold(struct ufs_hba *hba, bool async);
+void ufshcd_hold_all(struct ufs_hba *hba);
+void ufshcd_release_all(struct ufs_hba *hba);
+int ufshcd_comp_scsi_upiu(struct ufs_hba *hba, struct ufshcd_lrb *lrbp);
+int ufshcd_map_sg(struct ufs_hba *hba, struct ufshcd_lrb *lrbp);
+#endif
 
 /* Wrapper functions for safely calling variant operations */
 static inline const char *ufshcd_get_var_name(struct ufs_hba *hba)
@@ -1604,6 +1635,21 @@ static inline void ufshcd_vops_remove_debugfs(struct ufs_hba *hba)
 {
 }
 #endif
+
+static inline void ufshcd_vops_pm_qos_req_start(struct ufs_hba *hba,
+		struct request *req)
+{
+	if (hba->var && hba->var->pm_qos_vops &&
+		hba->var->pm_qos_vops->req_start)
+		hba->var->pm_qos_vops->req_start(hba, req);
+}
+
+static inline void ufshcd_vops_pm_qos_req_end(struct ufs_hba *hba,
+		struct request *req, bool lock)
+{
+	if (hba->var && hba->var->pm_qos_vops && hba->var->pm_qos_vops->req_end)
+		hba->var->pm_qos_vops->req_end(hba, req, lock);
+}
 
 extern struct ufs_pm_lvl_states ufs_pm_lvl_states[];
 
