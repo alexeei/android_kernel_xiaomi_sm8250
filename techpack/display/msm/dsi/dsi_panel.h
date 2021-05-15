@@ -225,6 +225,7 @@ struct dsi_panel {
 	struct dsi_panel_mi_cfg mi_cfg;
 	int panel_test_gpio;
 	int power_mode;
+	bool resend_ea;
 	enum dsi_panel_physical_type panel_type;
 
 	struct brightness_alpha_pair *fod_dim_lut;
