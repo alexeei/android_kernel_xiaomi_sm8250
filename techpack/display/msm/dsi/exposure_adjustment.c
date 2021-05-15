@@ -119,4 +119,8 @@ u32 ea_panel_calc_backlight(u32 bl_lvl)
 		if (ea_panel_send_pcc(bl_lvl))
 			pr_err("ERROR: Failed to send PCC\n");
 
-
+		return ELVSS_OFF_THRESHOLD;
+	} else {
+		return bl_lvl;
+	}
+}
