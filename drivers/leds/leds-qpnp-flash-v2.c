@@ -3095,7 +3095,6 @@ static int qpnp_flash_led_probe(struct platform_device *pdev)
 					i, rc);
 				goto error_led_register;
 			}
-          /* Added by liaokuanlong@xiaomi.com */
 			#if 1
 			fnode = &led->fnode[i];
 			if (!strcmp("led:torch_0", fnode->cdev.name)) {
